@@ -3,7 +3,6 @@ import streamlit as st
 
 # ✅ Direct imports (files are in the same folder as app.py)
 from ranker import rank_candidates, extract_text_from_pdf, extract_text_from_docx
-from llm_helper import llm_evaluate_candidate
 
 # App Title
 st.title("🚀 AI Resume Screening & Ranking System")
@@ -65,19 +64,5 @@ if st.button("Rank Resumes"):
                     )
                     st.progress(min(score / max_score, 1.0))
 
-                    # Optional: AI explanation per candidate
-                    try:
-                        resume_path = os.path.join("uploads/resumes", candidate)
-                        candidate_text = ""
-                        if candidate.endswith(".pdf"):
-                            candidate_text = extract_text_from_pdf(resume_path)
-                        elif candidate.endswith(".docx"):
-                            candidate_text = extract_text_from_docx(resume_path)
-
-                        if candidate_text:
-                            ai_eval = llm_evaluate_candidate(candidate_text, jd_text)
-                            st.write(f"💡 AI Explanation: {ai_eval}")
-                    except Exception as e:
-                        st.write(f"AI Evaluation could not be generated: {e}")
             else:
                 st.warning("No valid resumes were ranked.")
