@@ -1,9 +1,9 @@
 import os
 import streamlit as st
 
-# ✅ Correct imports from src package
-from src.ranker import rank_candidates, extract_text_from_pdf, extract_text_from_docx
-from src.llm_helper import llm_evaluate_candidate
+# ✅ Direct imports (files are in the same folder as app.py)
+from ranker import rank_candidates, extract_text_from_pdf, extract_text_from_docx
+from llm_helper import llm_evaluate_candidate
 
 # App Title
 st.title("🚀 AI Resume Screening & Ranking System")
